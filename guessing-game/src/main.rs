@@ -1,16 +1,12 @@
 use std::io;
 use rand::Rng;
 
-fn main() { 
-   
+fn round() {
+
     let mut ans: Vec<String> = Vec::new();
 
-    let mut choice = String::from("y"); 
-    io::stdin().read_line(&mut choice)
-               .expect("wrong input"); 
-    
-    while choice.trim() == "y" {
-        
+    while ans.len() != 5 {
+ 
         println!("-------------------------------------"); 
         println!("Guess a number from 1-5!");
         println!("You got 5 tries!!"); 
@@ -21,25 +17,33 @@ fn main() {
         let mut guess = String::new();
         io::stdin().read_line(&mut guess) 
                    .expect("Wrong guess"); 
-    
-        if guess.trim() == str_num {
-            println!("Corrrect!"); 
-            println!("You guess: {}", guess.trim()); 
-            println!("Answer: {str_num}");
-        } else { println!("Incorroce!"); 
-                 println!("The number was: {str_num}"); 
-               } 
- 
-        ans.push(guess);
-        
-        println!("Again? (y/n): "); 
-        choice.clear(); 
-        io::stdin().read_line(&mut choice) 
-                   .expect("wrong input");
-        } 
+            
+        if guess.trim() != str_num {
+                println!("Incorrect!"); 
+                println!("The number was: {str_num}");
+                 ans.push(guess.trim().to_string());
+        }
 
-    println!("end"); 
-    println!("Guesses:"); 
-    println!("{:?}", ans); 
+        else if guess.trim() == str_num {
+            ans.push(guess.trim().to_string());
+            println!("Correct!");
+            println!("The number was: {str_num}");
+            println!("{:?}", ans);
+
+            break;
+        }
+    }
+        
+    if ans.len() == 5 {         
+        
+        println!("game over"); 
+        println!("{:?}", ans);
+    }
+}   
+
+fn main() { 
+   
+round();
+
 }
 
