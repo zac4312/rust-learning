@@ -1,5 +1,4 @@
 round lifetime: 
-    score
-    limited guess
     store guesses/round
+
 
