@@ -1,0 +1,9 @@
+TODO:
+-| task manager
+ -| add task
+ -| mark task
+ -| list task
+ -| exit
+
+
+
