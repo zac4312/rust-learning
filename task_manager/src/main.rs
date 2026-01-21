@@ -6,11 +6,11 @@ use crate::controller::TaskState;
 use std::io;
 
 fn main() {
- 
+
+let mut b = AppState::build_app();
 let repeat = "y";
 while repeat == "y" {
 
- let mut b = AppState::build_app();
     //set task state
     println!("Set Task STATE: ");
     let mut choice = String::new();
