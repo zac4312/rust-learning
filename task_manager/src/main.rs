@@ -1,43 +1,29 @@
 mod controller;
-use crate::controller::Task;
-use crate::controller::AppState;
-use crate::controller::TaskState;
+mod user_input;
 
-use std::io;
+use crate::controller::Action;
+use crate::controller::AppStats;
+
 
 fn main() {
+    
+    let mut stats = AppStats::build_app();
+    let play = String::from("y");
 
-let mut b = AppState::build_app();
+    while play == "y" {
+        let todo = user_input::choose_act(); 
 
-loop {
-    //set task state
-    println!("Set Task STATE: ");
-    let mut choice = String::new();
-    io::stdin()
-        .read_line(&mut choice)
-        .expect("set_state err");
+        let action = match todo.as_str() {
+            "1" => Action::Add,
+            "2" => Action::List,
+            _ => Action::Quit, 
+        };
 
-    //set task title
-    println!("Title: ");
-    let mut title = String::new();
-    io::stdin()
-        .read_line(&mut title)
-        .expect("set_state err");
-
-    if  title.trim().is_empty() {
-        title = format!("task{}", b.count());
+        controller::do_action(action, &mut stats);
     }
-   
-    let a = Task::build_task(title, b.counter, controller::set_state(&choice.trim()));
 
-    println!("{:?}", a);
-
-    b.storage.push(a);
-
-
-    println!("{:?}", b);
 }
-}
+
 
 
 
