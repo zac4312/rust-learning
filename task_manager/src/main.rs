@@ -8,9 +8,8 @@ use std::io;
 fn main() {
 
 let mut b = AppState::build_app();
-let repeat = "y";
-while repeat == "y" {
 
+loop {
     //set task state
     println!("Set Task STATE: ");
     let mut choice = String::new();
