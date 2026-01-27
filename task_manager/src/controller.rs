@@ -53,16 +53,30 @@ impl Task {
     }
 
     pub fn add_task(stats: &mut AppStats) {
-        let title = user_input::set_title();
+        let mut title = user_input::set_title();
+        if title.is_empty() {title = format!("task{}", stats.counter);}
+
         let state = user_input::choose_state();
         let id = stats.count();
         let task = Self::build_task(title, id, set_state(&state));
+        println!("{:?}", task);
         stats.storage.push(task);
     } 
 
     pub fn show_tasks(stats: &AppStats) { println!("{:?}", stats.storage); } 
+    
     pub fn quit(stats: &AppStats) { println!("{:?}", stats.storage); println!("quitting..."); }  
 
+    pub fn edit_state(stats: AppStats) {
+        let target_id = user_input::edit_state(); 
+        let stored_tasks = stats.storage;
+
+        for stats.counter in stored_tasks.iter() {
+            match target_id {
+                 stats.counter => format!("{}", self.)
+            } 
+        }
+    } 
 }
 
 #[derive(Debug)]

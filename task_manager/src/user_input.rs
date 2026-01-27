@@ -1,6 +1,8 @@
 use std::io;
 
 pub fn choose_act() -> String {
+    println!("--------------------------------------------------------------");
+    println!("--------------------------------------------------------------");
     println!("1: add task || 2: show tasks || 3: edit task state || 4: exit");
     let mut act_choice = String::new();
     io::stdin()
@@ -28,6 +30,17 @@ pub fn set_title() -> String {
     io::stdin()
         .read_line(&mut title)
         .expect("set_state err"); 
-
+   
     title.trim().to_string()
+}
+
+pub fn edit_state() -> usize {
+    println!("Enter task Id: ");
+    let mut id_choice = String::new();
+    io::stdin()
+        .read_line(&mut id_choice)
+        .expect("set_state err");
+   
+   id_choice.parse::<usize>()
+        .expect("Id parsing err")
 }
